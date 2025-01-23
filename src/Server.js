@@ -16,7 +16,7 @@ app.listen(5000, () => {
 app.get("/",async(req,res)=>{
     const {lat,lng} = req.query;
     const apikey = process.env.OPENWEATHER_API_KEY;
-    const request=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apikey}`
+    const request=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apikey}&units=metric`
     try{
         const response=await fetch(request);
         const data = await response.json();
