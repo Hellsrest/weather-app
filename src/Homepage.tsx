@@ -9,7 +9,7 @@ function WeatherMap() {
   // Fetch weather data based on lat and lng
   const fetchWeather = async (lat: string, lng: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/?lat=${lat}&lng=${lng}`);
+      const response = await fetch(`https://fafc-113-199-228-249.ngrok-free.app/?lat=${lat}&lng=${lng}`);
       if (response.ok) {
         const data = await response.json();
         console.log(data);
