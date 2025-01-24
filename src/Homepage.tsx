@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 
 function WeatherMap() {
   const [weatherData, setWeatherData] = useState<any>(null);
