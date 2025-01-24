@@ -31,26 +31,31 @@ function WeatherMap() {
 
   // Initialize the map on component load
   useEffect(() => {
-    // Default map view
-    const defaultView = [51.505, -0.09];
-    const map = L.map("map").setView(defaultView as L.LatLngExpression, 13);
+    const defaultView: L.LatLngExpression = [51.505, -0.09];
+    
+    const map = L.map("map", {
+      center: defaultView,
+      zoom: 13,
+      zoomControl: true // Standard option for interaction
+    });
     
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
-
-    map.on("click", handleMapClick);
-
-    // Get the user's current location and update map if available
+    
+    // Use standard event handling for touch and click
+    map.on('click', handleMapClick);
+    
+    // Optional: Improve mobile interaction
+    map.doubleClickZoom.enable();
+    map.touchZoom.enable();
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          // Update map view to user's location
           map.setView([latitude, longitude], 13);
-          
-          // Fetch weather data for user's location
           fetchWeather(latitude.toString(), longitude.toString());
         },
         (error) => {
@@ -58,12 +63,12 @@ function WeatherMap() {
         }
       );
     }
-
+    
     return () => {
       map.remove();
     };
   }, []);
-
+  
   return (
     <div style={{ display: "flex" }}>
       {/* Map Container */}
