@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+
 function WeatherMap() {
   const [weatherData, setWeatherData] = useState<any>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -41,7 +42,7 @@ function WeatherMap() {
     }).addTo(map);
 
     map.on("click", handleMapClick);
-
+    
     // Get the user's current location and update map if available
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
