@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 function WeatherMap() {
   const [weatherData, setWeatherData] = useState<any>(null);
@@ -9,7 +10,7 @@ function WeatherMap() {
   // Fetch weather data based on lat and lng
   const fetchWeather = async (lat: string, lng: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/?lat=${lat}&lng=${lng}`);
+      const response = await fetch(`${baseUrl}/?lat=${lat}&lng=${lng}`);
       if (response.ok) {
         const data = await response.json();
         console.log(data);
