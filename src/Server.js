@@ -16,7 +16,7 @@ app.listen(5000,"0.0.0.0", () => {
 //to get wether of certain location
 app.get("/",async(req,res)=>{
     const {lat,lng} = req.query;
-    const apikey = "50bdad4d33537e64e0debc2040093772";
+    const apikey = process.env.OPENWEATHER_API_KEY;
     const request=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apikey}&units=metric`
     try{
         const response=await fetch(request);
